@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @niu %>
+
+<div>
+  <%= link_to "Edit this niu", edit_niu_path(@niu) %> |
+  <%= link_to "Back to nius", nius_path %>
+
+  <%= button_to "Destroy this niu", @niu, method: :delete %>
+</div>

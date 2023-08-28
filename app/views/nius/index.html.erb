@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Nius</h1>
+
+<div id="nius">
+  <% @nius.each do |niu| %>
+    <%= render niu %>
+    <p>
+      <%= link_to "Show this niu", niu %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New niu", new_niu_path %>
