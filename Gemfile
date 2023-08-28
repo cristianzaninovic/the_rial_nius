@@ -61,7 +61,13 @@ gem 'jquery-rails'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 
 # Forms https://github.com/heartcombo/simple_form
-gem 'simple_form'
+# gem 'simple_form'
+
+#  Forms https://github.com/bootstrap-ruby/bootstrap_form
+gem "bootstrap_form", "~> 5.2"
+
+# Devise forms: https://github.com/lcreid/devise-bootstrap-form
+gem 'devise-bootstrap-form'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
