@@ -1,6 +1,6 @@
 class NiusController < ApplicationController
   before_action :set_niu, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_nius_user!, except: [:index, :show]
   # GET /nius or /nius.json
   def index
     @nius = Niu.all
