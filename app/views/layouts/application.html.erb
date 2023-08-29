@@ -18,6 +18,9 @@
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
-    <%= yield %>
+    <div class="container border border-light border-3 rounded p-2 my-1">
+      <%= yield %>
+    </div>
+    
   </body>
 </html>

@@ -1,0 +1,12 @@
+<div class="col">
+  <div id="<%= dom_id niu %>" class='card' style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= niu.title %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= niu.headline %></h6>
+      <p class="card-text"><%= niu.content %></p>
+      <p class="fw-lighter"><%= niu.nius_user.email %></p>
+      <%= link_to "Show", niu, class: 'btn btn-outline-primary' %>
+  
+    </div>
+  </div>
+</div>
