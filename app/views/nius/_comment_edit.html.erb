@@ -1,0 +1,8 @@
+  <div class="nested-fields border border-info rounded p-2 border-2 m-2" >
+    <%= comment.input :content, label: false %>
+    <% if current_nius_user.admin? %>
+      <%= comment.association :nius_user, collection: NiusUser.all.map { |field| [field.email, field.id] }, value: comment.id, include_blank: false, prompt: "select user..."  %>
+      <%= comment.hidden_field :_destroy %>
+      <%= link_to "Remove", "#", data: { action: "click->loadCommentFields#remove_association" } %>    
+    <% end %>
+  </div>  

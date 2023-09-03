@@ -1,4 +1,8 @@
-
+<% unless @niu.nius_user.nil? %>
+<div class="form-inputs">
+  <small class="text-secondary">Created on <%= @niu.created_at %> by <%= @niu.nius_user.email %>.</small>
+</div>  
+<% end %>
 <%= simple_form_for(@niu) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -8,6 +12,22 @@
     <%= f.input :title %>
     <%= f.input :headline %>
     <%= f.input :content %>
+  </div>
+
+  <h3 class="text-xl mt-4 text-primary">Comments</h3>
+  <div class="my-2" data-controller="comment-fields">
+    <div class="comments-fields" data-comment-fields-target="commentsFields">  
+      <%= f.simple_fields_for :comments do |comment| %>
+        <% if current_nius_user.admin? %>
+          <%= render partial: 'comment_edit', locals: {comment: comment} %>
+        <% else %>
+          <%= render partial: 'comment_view', locals: {comment: comment} %>
+        <% end %>        
+      <% end %>
+    </div>    
+    <div class="links py-2">
+      <%= link_to 'New comment', '#', class: 'btn btn-info', data: { action: 'click->comment-fields#loadCommentFields' } %>      
+    </div>
   </div>
 
   <div class="form-actions">

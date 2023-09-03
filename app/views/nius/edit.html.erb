@@ -1,7 +1,7 @@
 <h1 class='text-primary'>Editing niu</h1>
-<%= render "form", niu: @niu %>
+<%= render "form" %>
 <br>
 <div>
-  <%= link_to "Show this niu", @niu %> |
-  <%= link_to "Back to nius", nius_path %>
+  <%= link_to "Nius", nius_path, class: 'btn btn-outline btn-sucess' %>
+  <%= link_to "Show", @niu, class: 'btn btn-outline btn-primary' %>  
 </div>

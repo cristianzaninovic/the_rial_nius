@@ -2,17 +2,27 @@
   <p class="fw-lighter">
     <%= niu.nius_user.email %> said on <%= niu.nius_user.created_at %> this:
   </p>
-
   <p>
     <h2><%= niu.title %></h2>
   </p>
-
   <p>
     <h3><%= niu.headline %></h3>
   </p>
-
   <p>
     <%= niu.content %>
   </p>
+  
+  <% @comments.each do |comment| %>
+    <%= render partial: 'comment_view', locals: {:comment => comment} %>
+  <% end %>
+  <% unless current_nius_user.nil? %>
+    <div class="my-2" data-controller="comment-fields">
+      <div class="comments-fields" data-comment-fields-target="commentsFields">  
+        <div class="links py-2">
+          <%= link_to 'New comment', '#', class: 'btn btn-success', data: { action: 'click->comment-fields#loadNewCommentFields' } %>      
+        </div>
+      </div>
+    </div>
+  <% end %>
 
 </div>

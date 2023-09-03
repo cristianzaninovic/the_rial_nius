@@ -1,6 +1,7 @@
 class NiusController < ApplicationController
-  before_action :set_niu, only: %i[ show edit update destroy ]
+  # before_action :set_niu, only: %i[ show edit update destroy ]
   before_action :authenticate_nius_user!, except: [:index, :show]
+  # before_action :validate_comment_edition, only: %i[ show edit update destroy ]
   # GET /nius or /nius.json
   def index
     @nius = Niu.all
@@ -8,16 +9,33 @@ class NiusController < ApplicationController
 
   # GET /nius/1 or /nius/1.json
   def show
+    @niu = Niu.find(params[:id])
+    @comments = @niu.comments
   end
+  def comment_add
+    @niu = params[:id].nil? ? Niu.new : Niu.find(params[:id])
+    @comment = @niu.comments.build
+    # render partial: 'existing_client_fields', locals: { ff: @niu, f: @client }
+    render partial: 'comment_add'
+  end  
 
   # GET /nius/new
   def new
     @niu = Niu.new
+    # @niu.comments.build
   end
 
   # GET /nius/1/edit
   def edit
+    @niu = Niu.find(params[:id])
+    # @comments = @niu.comments
   end
+  def comment_new
+    @niu = params[:id].nil? ? Niu.new : Niu.find(params[:id])
+    # @comment = @niu.comments.build
+    # render partial: 'existing_client_fields', locals: { ff: @niu, f: @client }
+    render partial: 'comment_new'
+  end  
 
   # POST /nius or /nius.json
   def create
@@ -36,6 +54,7 @@ class NiusController < ApplicationController
 
   # PATCH/PUT /nius/1 or /nius/1.json
   def update
+    @niu = Niu.find(params[:id])
     respond_to do |format|
       if @niu.update(niu_params)
         format.html { redirect_to niu_url(@niu), notice: "Niu was successfully updated." }
@@ -58,13 +77,14 @@ class NiusController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_niu
-      @niu = Niu.find(params[:id])
-    end
-
     # Only allow a list of trusted parameters through.
     def niu_params
-      params.require(:niu).permit(:nius_user_id, :title, :headline, :content)
+      params.require(:niu).permit(:nius_user_id, :title, :headline, :content, 
+        comments_attributes: [:_destroy, :id, :content, :nius_user_id])
     end
+
+    def validate_comment_edition
+      
+    end
+
 end

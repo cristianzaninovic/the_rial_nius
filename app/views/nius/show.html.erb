@@ -1,7 +1,7 @@
 <%= render @niu %>
 <div>
   <% if current_nius_user %>
-    <% if current_nius_user.id = @niu.nius_user_id or current_nius_user.admin? %> 
+    <% if current_nius_user.admin? %> 
       <%= link_to "Edit this niu", edit_niu_path(@niu), class: 'btn btn-outline-warning'%>
     <% end %>  
     <% if current_nius_user.admin? %>
