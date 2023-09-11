@@ -11,13 +11,29 @@ class NiusController < ApplicationController
   def show
     @niu = Niu.find(params[:id])
     @comments = @niu.comments
+    
   end
-  def comment_add
-    @niu = params[:id].nil? ? Niu.new : Niu.find(params[:id])
-    @comment = @niu.comments.build
-    # render partial: 'existing_client_fields', locals: { ff: @niu, f: @client }
-    render partial: 'comment_add'
-  end  
+
+  # def comment_add
+  #   @niu = params[:id].nil? ? Niu.new : Niu.find(params[:id])
+  #   @comment = @niu.comments.build
+  #   # render partial: 'existing_client_fields', locals: { ff: @niu, f: @client }
+  #   render partial: 'nius/comment_add'
+  # end
+  # def comment_create
+  #   @niu = params[:id].nil? ? Niu.new : Niu.find(params[:id])
+  #   comment = Comment.new(comment_params)
+  #   comment.niu = @niu
+  #   if comment.save
+  #     # Instead of redirecting like we normally would, we render a partial for our Stimulus controller to handle
+
+  #     # Note that we're just rendering HTML here, no need to render jbuilders or js partials
+
+  #     render partial: 'nius/comment_view', locals: { comment: comment }, status: :ok
+  #   else
+  #     render partial: 'nius/comment_add', locals: { comment: comment }, status: :unprocessable_entity
+  #   end
+  # end
 
   # GET /nius/new
   def new

@@ -1,10 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['commentsFields'];
+  static targets = ['commentsFields', 'nestedForm'];
 
   connect() {
-    console.log('ClientFields controller connected');
+    console.log('CommentFields controller connected');
   }
 
   async loadCommentFields(event) {
@@ -22,9 +22,13 @@ export default class extends Controller {
     // const niu_id = this.commentsFieldsTarget.id
     const response = await fetch('comment_add');
     var content = await response.text();
-    var content = content.replace(/NEW_RECORD/g, new Date().valueOf())
     console.log(content);
     this.commentsFieldsTarget.insertAdjacentHTML('beforeend', content);
+  }
+
+  add_association(event) {
+    const [_data, _status, xhr] = event.detail
+    this.nestedFormTarget.innerHTML = xhr.response
   }
 
   remove_association(event) {

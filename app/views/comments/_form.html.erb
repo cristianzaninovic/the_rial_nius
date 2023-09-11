@@ -1,0 +1,11 @@
+<div class="border border-warning rounded p-2 border-2 m-2">
+  <%= bootstrap_form_with model: @niu.comments.build, url: niu_comments_path(@niu), data: { action: "ajax:success->comments#createSuccess" } do |form| %>
+    <div>
+      <%= form.text_field :content, data: { target: "comments.commentBody" }, placeholder: true %>
+      <%= form.hidden_field :nius_user_id, value: current_nius_user.id  %>
+    </div>
+    <div>
+      <%= form.submit "Post" %>
+    </div>
+  <% end %>
+</div>

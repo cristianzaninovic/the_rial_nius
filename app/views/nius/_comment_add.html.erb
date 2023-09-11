@@ -1,5 +1,4 @@
-<%= simple_form_for @niu, wrapper: false do |f| %>
-  <%= f.simple_fields_for :comments, Comment.new, child_index: "NEW_RECORD", wrapper: false do |comment| %>      
+  <%= simple_form_for model: Comment.new, url: niu_comments_path(@niu), data: { action: "ajax:comment-fields#add_association" } do |comment| %>
     <div class="nested-fields border border-warning rounded p-2 border-2 m-2">
       <%= comment.input :content %>
       <%= comment.hidden_field :nius_user_id, value: current_nius_user.id  %>
@@ -7,4 +6,3 @@
       <%= link_to "Remove", "#", data: { action: "click->comment-fields#remove_association" } %>
     </div>  
   <% end %>  
-<% end %>
