@@ -8,7 +8,7 @@
 end
 
 user = NiusUser.new(
-  :email                 => 'czaninovic@gmail.com',
+  :email                 => 'admin@nius.com',
   :password              => "123456",
   :password_confirmation => "123456",
   :role => 'admin'
